@@ -18,7 +18,7 @@ from google import genai
 from google.genai import types
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 class GeminiAgentExecutor(AgentExecutor):

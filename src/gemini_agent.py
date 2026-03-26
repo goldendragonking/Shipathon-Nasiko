@@ -1,4 +1,4 @@
-from .support_toolset import SupportToolset
+from .agent_toolset import SupportToolset
 
 def create_agent():
     """Create Gemini agent and its tools"""

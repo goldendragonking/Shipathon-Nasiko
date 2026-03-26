@@ -3,7 +3,7 @@ name = "ps01-support-agent"
 version = "0.1.0"
 description = "A2A Translator agent"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "a2a-sdk[http-server]>=0.3.0",
     "click>=8.1.8",

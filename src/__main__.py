@@ -22,7 +22,11 @@ from starlette.applications import Starlette
 
 load_dotenv()
 
-logging.basicConfig()
+logging.basicConfig(level=logging.INFO)
+# Silence verbose third-party loggers but keep important server info
+logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
+logging.getLogger("google.genai").setLevel(logging.WARNING)
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 
 @click.command()
@@ -79,7 +83,8 @@ def main(host: str, port: int):
 
     app = Starlette(routes=routes)
 
-    uvicorn.run(app, host=host, port=port)
+    print(f"\n🚀 Server starting on http://{host}:{port}")
+    uvicorn.run(app, host=host, port=port, log_level="info")
 
 
 if __name__ == '__main__':

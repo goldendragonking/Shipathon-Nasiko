@@ -1,11 +1,11 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy the project files
-COPY . .
+# Copy only the source code to the container root
+COPY src/ /app
+# Also copy knowledge_base.json if it resides in src (it does)
 
-# Install ONLY our required support agent dependencies
 RUN pip install --no-cache-dir \
     "a2a-sdk[http-server]>=0.3.0" \
     google-genai>=1.0.0 \
@@ -13,9 +13,11 @@ RUN pip install --no-cache-dir \
     click>=8.1.8 \
     uvicorn \
     python-dotenv
-    
-# The A2A protocol expects port 5000
+
+ENV PYTHONUNBUFFERED=1
+
+# Expose the port (optional but good practice)
 EXPOSE 5000
 
-# Start the agent
-CMD ["python", "-m", "src", "--host", "0.0.0.0", "--port", "5000"]
+# Start the agent using the flat structure expected by the template's Dockerfile
+CMD ["python", "__main__.py", "--host", "0.0.0.0", "--port", "5000"]

@@ -65,8 +65,6 @@ class SupportToolset:
         except Exception as e:
             return f"Escalation failed: {str(e)}"
 
-    # ... rest of the class above remains the same ...
-
     def get_tools(self) -> dict[str, Any]:
         """Returns the actual callable methods for the agent to use."""
         return {
