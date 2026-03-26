@@ -20,7 +20,9 @@ from .gemini_agent_executor import (
 from starlette.applications import Starlette
 
 
-load_dotenv()
+# Load the .env file from the root directory relative to this script
+env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path=env_path)
 
 logging.basicConfig(level=logging.INFO)
 # Silence verbose third-party loggers but keep important server info

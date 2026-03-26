@@ -2,8 +2,8 @@ services:
   ps01-support-agent:
     build: .
     container_name: ps01-support-agent
-    environment:
-      - GEMINI_API_KEY=your-gemini-api-key-here
+    env_file:
+      - .env
     stdin_open: true
     ports:
       - "5000"
