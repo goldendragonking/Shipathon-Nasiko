@@ -1,8 +1,7 @@
-from .support_toolset import SupportToolset  # type: ignore[import-untyped]
-
+from .support_toolset import SupportToolset
 
 def create_agent():
-    """Create OpenAI agent and its tools"""
+    """Create Gemini agent and its tools"""
     toolset = SupportToolset()
     tools = toolset.get_tools()
 

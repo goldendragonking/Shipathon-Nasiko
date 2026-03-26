@@ -17,7 +17,7 @@ class SupportToolset:
             self.kb = {"categories": []}
             print(f"CRITICAL ERROR: Could not load knowledge_base.json: {e}")
 
-    async def query_knowledge_base(self, search_term: str) -> str:
+    def query_knowledge_base(self, search_term: str) -> str:
         """Search the Aura Electronics knowledge base.
         
         Args:
@@ -47,7 +47,7 @@ class SupportToolset:
         except Exception as e:
             return f"Search failed: {str(e)}"
 
-    async def escalate_to_human(self, reason: str, context_summary: str) -> str:
+    def escalate_to_human(self, reason: str, context_summary: str) -> str:
         """Escalate to a human Tier 2 agent for critical issues, anger, fraud, or unresolvable problems.
         
         Args:
@@ -65,8 +65,11 @@ class SupportToolset:
         except Exception as e:
             return f"Escalation failed: {str(e)}"
 
+    # ... rest of the class above remains the same ...
+
     def get_tools(self) -> dict[str, Any]:
+        """Returns the actual callable methods for the agent to use."""
         return {
-            'query_knowledge_base': self,
-            'escalate_to_human': self,
+            'query_knowledge_base': self.query_knowledge_base,
+            'escalate_to_human': self.escalate_to_human,
         }

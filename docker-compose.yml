@@ -3,7 +3,7 @@ services:
     build: .
     container_name: ps01-support-agent
     environment:
-      - OPENAI_API_KEY=your-openai-api-key-here
+      - GEMINI_API_KEY=your-gemini-api-key-here
     stdin_open: true
     ports:
       - "5000"

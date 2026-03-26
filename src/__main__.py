@@ -13,9 +13,9 @@ from a2a.types import (
     AgentSkill,
 )
 from dotenv import load_dotenv
-from .openai_agent import create_agent  # type: ignore[import-not-found]
-from .openai_agent_executor import (
-    OpenAIAgentExecutor,  # type: ignore[import-untyped]
+from .gemini_agent import create_agent  # type: ignore[import-not-found]
+from .gemini_agent_executor import (
+    GeminiAgentExecutor,  # type: ignore[import-untyped]
 )
 from starlette.applications import Starlette
 
@@ -30,8 +30,8 @@ logging.basicConfig()
 @click.option('--port', 'port', default=5000)
 def main(host: str, port: int):
     # Verify an API key is set.
-    if not os.getenv('OPENAI_API_KEY'):
-        raise ValueError('OPENAI_API_KEY environment variable not set')
+    if not os.getenv('GEMINI_API_KEY'):
+        raise ValueError('GEMINI_API_KEY environment variable not set')
 
     skill = AgentSkill(
         id='support_agent',
@@ -46,7 +46,7 @@ def main(host: str, port: int):
         ],
     )
 
-    # AgentCard for OpenAI-based agent
+    # AgentCard for Gemini-based agent
     agent_card = AgentCard(
         name='Customer Support Agent',
         description='An intelligent customer support agent for Nasiko that handles billing, returns, and technical queries',
@@ -58,13 +58,13 @@ def main(host: str, port: int):
         skills=[skill],
     )
 
-    # Create OpenAI agent
+    # Create Gemini agent
     agent_data = create_agent()
 
-    agent_executor = OpenAIAgentExecutor(
+    agent_executor = GeminiAgentExecutor(
         card=agent_card,
         tools=agent_data['tools'],
-        api_key=os.getenv('OPENAI_API_KEY'),
+        api_key=os.getenv('GEMINI_API_KEY'),
         system_prompt=agent_data['system_prompt'],
     )
 

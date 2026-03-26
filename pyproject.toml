@@ -7,8 +7,11 @@ requires-python = ">=3.10"
 dependencies = [
     "a2a-sdk[http-server]>=0.3.0",
     "click>=8.1.8",
-    "openai>=1.57.0", 
-    "pydantic>=2.11.4"
+    "google-genai>=1.0.0", 
+    "pydantic>=2.11.4",
+    "uvicorn>=0.30.0",
+    "starlette>=0.40.0",
+    "python-dotenv>=1.0.1"
 ]
 
 [tool.hatch.build.targets.wheel]

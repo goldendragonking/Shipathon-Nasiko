@@ -8,7 +8,7 @@ COPY . .
 # Install ONLY our required support agent dependencies
 RUN pip install --no-cache-dir \
     "a2a-sdk[http-server]>=0.3.0" \
-    openai>=1.57.0 \
+    google-genai>=1.0.0 \
     pydantic>=2.11.4 \
     click>=8.1.8 \
     uvicorn \
